@@ -17,11 +17,10 @@ builder.Services.AddAuthentication(opt =>
     opt.SPOptions.EntityId = new EntityId("https://localhost:5080/Saml2");
     opt.IdentityProviders.Add(
         new IdentityProvider(
-            new EntityId("https://localhost:7266/"),
+            new EntityId("https://stubidp.sustainsys.com/Metadata"),
             opt.SPOptions)
         {   
-            LoadMetadata = true,
-            MetadataLocation = "https://localhost:7266/Metadata",
+            LoadMetadata = true
         });
 });
 var app = builder.Build();
