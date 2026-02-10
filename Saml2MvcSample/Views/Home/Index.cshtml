@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Authorization
+
+<h1>Saml2 Test Client</h1>
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <p>Inloggad som: <strong>@User.Identity.Name</strong></p>
+
+    <ul>
+        <li><a href="/Account/Claims">Visa dina claims</a></li>
+    </ul>
+
+    <form method="post" action="Account/Logout">
+        <button type="submit">Logga ut</button>
+    </form>
+ }
+ else
+{
+    <p>Inte inloggad</p>
+
+    <a href="/Account/Login">Logga in via Saml</a>
+
+}
