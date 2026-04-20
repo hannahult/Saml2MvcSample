@@ -10,6 +10,10 @@ namespace Saml2MvcSample.Controllers
         [HttpGet]
         public IActionResult Login(string? returnUrl = null)
         {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return BadRequest("Invalid return URL.");
+            }
             var props = new AuthenticationProperties
             {
                 RedirectUri = returnUrl ?? Url.Action("Claims", "Account")

@@ -19,7 +19,7 @@ builder.Services.AddAuthentication(opt =>
         new IdentityProvider(
             new EntityId("https://localhost:7266/Metadata"),
             opt.SPOptions)
-        {   
+        {
             LoadMetadata = true
         });
 });

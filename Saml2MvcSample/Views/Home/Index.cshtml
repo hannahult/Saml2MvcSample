@@ -4,20 +4,20 @@
 
 @if (User.Identity?.IsAuthenticated == true)
 {
-    <p>Inloggad som: <strong>@User.Identity.Name</strong></p>
+    <p>Logged in as: <strong>@User.Identity.Name</strong></p>
 
     <ul>
-        <li><a href="/Account/Claims">Visa dina claims</a></li>
+        <li><a href="/Account/Claims">Show your claims</a></li>
     </ul>
 
     <form method="post" action="Account/Logout">
-        <button type="submit">Logga ut</button>
+        <button type="submit">Logout</button>
     </form>
  }
  else
 {
-    <p>Inte inloggad</p>
+    <p>Not logged in</p>
 
-    <a href="/Account/Login">Logga in via Saml</a>
+    <a href="/Account/Login">Login through Saml2</a>
 
 }
