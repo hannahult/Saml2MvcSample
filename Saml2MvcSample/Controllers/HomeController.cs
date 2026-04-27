@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Saml2MvcSample.Models;
+using System.Diagnostics;
 
 namespace Saml2MvcSample.Controllers
 {
@@ -13,7 +13,7 @@ namespace Saml2MvcSample.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            return RedirectToAction("Claims", "Account");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

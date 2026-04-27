@@ -1,6 +1,7 @@
 using Sustainsys.Saml2;
 using Sustainsys.Saml2.AspNetCore2;
 using Sustainsys.Saml2.Metadata;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,22 @@ builder.Services.AddAuthentication(opt =>
         {
             LoadMetadata = true
         });
+
+    opt.Notifications.AcsCommandResultCreated = (result, response) =>
+    {
+        var identity = result.Principal.Identity as ClaimsIdentity;
+        if (identity != null)
+        {
+            result.Principal = new ClaimsPrincipal(new ClaimsIdentity(
+                identity.Claims,
+                identity.AuthenticationType,
+                ClaimTypes.NameIdentifier, // NameClaimType
+                ClaimTypes.Role            // RoleClaimType
+            ));
+        }
+    };
 });
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
